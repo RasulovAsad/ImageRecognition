@@ -10,6 +10,7 @@ from keras.utils import to_categorical
 from keras.preprocessing.image import ImageDataGenerator
 from sklearn.preprocessing import LabelEncoder
 from keras.utils import to_categorical
+from utils.image_utils import load_images_from_folder, preprocess_images, split_data
 
 num_classes = 5
 
@@ -40,7 +41,7 @@ preprocessed_images = preprocess_images(images)
 
 # Разделение данных на обучающую и проверочную выборки
 print('Разделение данных на обучающую и проверочную выборки')
-X_train, X_val, y_train, y_val = train_test_split(preprocessed_images, labels, test_size=0.2, random_state=42)
+X_train, X_val, y_train, y_val = split_data(preprocessed_images, labels, test_size=0.2, random_state=42)
 
 
 # Преобразование строковых меток в целые числа
@@ -100,14 +101,3 @@ history = model.fit(
 
 print('Сохранение модели')
 model.save('my_model.keras')
-
-
-# # Обучение модели
-# print('Обучение модели')
-# num_epochs = 10
-
-# history = model.fit(
-#     X_train, y_train,
-#     epochs=num_epochs,
-#     validation_data=(X_val, y_val)
-# )

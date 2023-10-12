@@ -166,3 +166,6 @@ cython_debug/
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+*.h5
+*.keras
