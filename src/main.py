@@ -3,7 +3,7 @@ import numpy as np
 from keras.models import load_model
 
 # Загрузка обученной модели
-model = load_model('model\\my_model.keras')
+model = load_model('resnet_model.keras')
 
 # Функция для загрузки и предобработки изображения
 def load_and_preprocess_image(image_path):
@@ -22,11 +22,11 @@ def classify_image(image_path):
     if img is None:
         return "Image not found or cannot be loaded."
 
-    # Выполнение инференса с помощью модели
+    
     result = model.predict(np.expand_dims(img, axis=0))
     class_index = np.argmax(result)
     
-    # Здесь предполагается, что у вас есть список классов, например:
+    # Список классов:
     class_labels = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
     
     # Получение метки класса
@@ -34,7 +34,7 @@ def classify_image(image_path):
     
     return predicted_class
 
-# Пример использования функции для классификации изображения
-image_path = 'resources\\test\\dsa.jpg'
+# Классификация изображения
+image_path = 'src\\resources\\test\\podsolnux.jpg'
 predicted_class = classify_image(image_path)
-print(f'The image is classified as: {predicted_class}')
+print(f' -----------------------------------------\n|  The image is classified as: {predicted_class}  |\n -----------------------------------------')
