@@ -89,7 +89,7 @@ val_generator = val_datagen.flow(
 )
 
 # Train the model using data generators
-num_epochs = 10
+num_epochs = 20
 
 history = model.fit(
     train_generator,  # Training data generator

@@ -10,7 +10,7 @@ from keras.utils import to_categorical
 from keras.preprocessing.image import ImageDataGenerator
 from sklearn.preprocessing import LabelEncoder
 from keras.utils import to_categorical
-from utils.image_utils import load_images_from_folder, preprocess_images, split_data
+#from utils.image_utils import load_images_from_folder, preprocess_images, split_data
 import matplotlib.pyplot as plt
 
 num_classes = 5
@@ -35,6 +35,10 @@ def preprocess_images(images):
     resized_images = [cv2.resize(img, (224, 224)) for img in images]
     preprocessed_images = np.array(resized_images, dtype=np.float32) / 255.0
     return preprocessed_images
+
+def split_data(images, labels, test_size=0.2, random_state=42):
+    X_train, X_val, y_train, y_val = train_test_split(images, labels, test_size=test_size, random_state=random_state)
+    return X_train, X_val, y_train, y_val
 
 data_folder = 'src\\resources\\flowers'
 images, labels = load_images_from_folder(data_folder)
@@ -89,7 +93,7 @@ val_generator = val_datagen.flow(
 )
 
 # Train the model using data generators
-num_epochs = 10
+num_epochs = 20
 
 history = model.fit(
     train_generator,  # Training data generator

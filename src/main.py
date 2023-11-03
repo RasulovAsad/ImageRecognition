@@ -3,7 +3,7 @@ import numpy as np
 from keras.models import load_model
 
 # Загрузка обученной модели
-model = load_model('resnet_model.keras')
+model = load_model('inception_model.keras')
 
 # Функция для загрузки и предобработки изображения
 def load_and_preprocess_image(image_path):
@@ -35,6 +35,6 @@ def classify_image(image_path):
     return predicted_class
 
 # Классификация изображения
-image_path = 'src\\resources\\test\\podsolnux.jpg'
+image_path = 'src\\resources\\test\\img.jpg'
 predicted_class = classify_image(image_path)
 print(f' -----------------------------------------\n|  The image is classified as: {predicted_class}  |\n -----------------------------------------')
